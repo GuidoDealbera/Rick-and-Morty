@@ -1,3 +1,6 @@
 .App {
+   background-image: image("D:\Desktop\HENRY\Rick and Morty\src\image\Rick&Morty (imagen)");
+   background-repeat: no repeat;
+   background-size: cover;
    text-align: center;
 }
