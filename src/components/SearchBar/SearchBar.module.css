@@ -1,6 +1,16 @@
 .searchbar input{
     border-radius: 10px;
+    background-color: darkgray;
 }
 .searchbar button{
     border-radius: 10px;
+    background-color: rgb(100, 100 ,150);
+    color:aliceblue;
+    border: .5px solid white;
+    transition: .1s;
+}
+.searchbar button:hover{
+    box-shadow: 0px 0px 30px rgb(200, 200, 200);
+    transform: translate(0, -.5px);
+    cursor: pointer;
 }

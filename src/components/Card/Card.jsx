@@ -1,4 +1,8 @@
 import styles from "./Card.module.css"
+import { Link } from "react-router-dom";
+
+
+
 export default function Card(props) {
    return (
       <div className={styles.contenedor}>
@@ -6,9 +10,11 @@ export default function Card(props) {
          <button 
          onClick={() => props.onClose()}></button>
          </div>
+         <Link to={`/detail/${props.id}`}>
          <div>
          <img className={styles.image} src={props.image} alt={props.name} />
          </div>
+         </Link>
          <div className={styles.divData}>
          <h2>{props.name}</h2>
          <br/>

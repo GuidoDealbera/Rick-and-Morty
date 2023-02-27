@@ -7,19 +7,20 @@
     padding: 10px;
     box-shadow: 0 0 15px;
     transition: .1s;
+    align-items: center;
 }
 
 .contenedor:hover{
-    box-shadow: 0px 0px 8px rgb(156, 156, 156);
+    box-shadow: 0px 0px 30px rgb(156, 156, 156);
     cursor: pointer;
-    width: 250px;
-    height: 350px;
+    transform: translate(0, -5px);
 }
 
 .image {
     width: 100%;
     margin-top: 0px;
-    border-radius: .5rem;
+    border-radius: .7rem;
+    border: .5px solid black;
 }
 
 .boton {
@@ -31,9 +32,9 @@
     border: 1px solid transparent;
     border-radius: 8px;
     box-shadow: 1px 2px 3px;
-    text-shadow: 0 0 0;
     position:absolute;
-    height: 15px;
+    height: 17px;
+    width: 17px;
     background-color:firebrick;
 }
 
@@ -51,7 +52,7 @@
 .divData h2 {
     text-shadow: 0 0 .8px;
     margin: 2px;
-    font-size: 25px;
+    font-size: 20px;
     color:darkgreen;
     font-family:cursive;   
 }
@@ -62,7 +63,7 @@
     text-shadow: 0 0 .8px;
     margin: 2px;
     font-size: 20px;
-    color:indigo;
+    color:darkblue;
     font-family: cursive;
     font-style: italic;
 }
