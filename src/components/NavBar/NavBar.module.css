@@ -1,0 +1,8 @@
+.barra {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.barra div button{
+    border-radius: 5px;
+}
