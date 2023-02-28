@@ -8,7 +8,7 @@ export default function NavBar(props){
         <div className={style.barra}>
             
             <NavLink to="/home">
-            <button>Home</button>
+            <button className={style.home}>Home</button>
             </NavLink>
             <NavLink to="/about">
             <button>About</button>

@@ -1,14 +1,16 @@
 .barra {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 .barra button{
     border-radius: 8px;
     background-color: rgb(100, 100 ,150);
     border: .5px solid white;
     color: white;
+    padding: 5px;
     transition: .1s;
+
 }
 .barra button:hover{
     box-shadow: 0px 0px 15px rgb(255, 255, 255);

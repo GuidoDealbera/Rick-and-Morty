@@ -1,8 +1,8 @@
 export default function validation (inputs){
     const errors = {};
-    const regexEmail = exprRegu
+    const regexEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
     const regexPassword = new RegExp("[0-9]")
-    if(!exprRegu.test(inputs.username)){
+    if(!regexEmail.test(inputs.username)){
         errors.username = "Debe ser un email válido";
     }
     if(!inputs.username){

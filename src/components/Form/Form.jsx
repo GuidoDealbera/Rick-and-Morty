@@ -40,12 +40,14 @@ export default function Form (props){
             name="username"
             value={userData.username}
             onChange={handleInputChange}/>
+            {errors.username && <p>{errors.username}</p>}
             <br />
             <label>Password: </label>
             <input type="password"
             name="password"
             value={userData.password}
             onChange={handleInputChange}/>
+            {errors.password && <p>{errors.password}</p>}
             <br/>
             <button>Sign in</button>
         </form>

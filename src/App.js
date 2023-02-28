@@ -2,13 +2,14 @@ import './App.css'
 import Cards from './components/Cards/Cards.jsx'
 import NavBar from './components/NavBar/NavBar.jsx'
 import { useState, useEffect } from 'react'
-import { Routes, Route, useLocation, useNavigate } from 'react-router-dom'
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom' //HICE UN CAMBIO ACÁ
 import About from './components/About/About.jsx'
 import Detail from './components/Detail/Detail.jsx'
 import Form from './components/Form/Form'
 function App () {
   const [characters, setCharacters] = useState([]);
   
+  const navigate = useNavigate();
   const [access, setAccess] = useState(false);
   const username = "guidojdealbera@gmail.com";
   const password = "gjd1995cv."
@@ -19,10 +20,9 @@ function App () {
        navigate('/home');
     }
  }
-
  useEffect(() => {
   !access && navigate('/');
-}, [access]);
+}, [access, navigate]);
   
   function onSearch(id) {
     fetch(`https://rickandmortyapi.com/api/character/${id}`)
@@ -52,7 +52,7 @@ function App () {
     <div className='App' style={{ padding: '25px' }}>
       <div>
         {location.pathname !== "/" &&<NavBar
-        onSearch={onSearch}/> }
+        onSearch={onSearch}/>}
       </div>
       <Routes>
         <Route exact path="/" element={<Form login={login}/>}/>
