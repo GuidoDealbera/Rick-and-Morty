@@ -5,10 +5,11 @@ import { useParams } from "react-router-dom"
 
 export default function Detail (props) {
    const [character, setCharacter] = useState({});
-   
+   const URL_BASE = "https://be-a-rym.up.railway.app/api";
+   const API_KEY = "dcfc10d73e5d.2a52928cb7f6acd5e30a";
    const { detailId } = useParams();
    useEffect(() => {
-    fetch(`https://rickandmortyapi.com/api/character/${detailId}`)
+    fetch(`${URL_BASE}character/${detailId}${API_KEY}`)
       .then((response) => response.json())
       .then((char) => {
         if (char.name) {

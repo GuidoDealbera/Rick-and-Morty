@@ -24,8 +24,12 @@ function App () {
   !access && navigate('/');
 }, [access, navigate]);
   
+
+  const URL_BASE = "https://be-a-rym.up.railway.app/api";
+  const API_KEY = "dcfc10d73e5d.2a52928cb7f6acd5e30a";
+
   function onSearch(id) {
-    fetch(`https://rickandmortyapi.com/api/character/${id}`)
+    fetch(`${URL_BASE}/character/${id}?key=${API_KEY}`)
     .then((response) => response.json())
     .then((data) => {
        if (data.name) {

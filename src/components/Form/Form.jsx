@@ -35,14 +35,14 @@ export default function Form (props){
     return (
         <div className={style.formulario}>
         <form onSubmit={handleSubmit}>
-            <label>Username: </label>
+            <label>Username:</label>
             <input type="text"
             name="username"
             value={userData.username}
             onChange={handleInputChange}/>
             {errors.username && <p>{errors.username}</p>}
-            <br />
-            <label>Password: </label>
+            <br/>
+            <label>Password:</label>
             <input type="password"
             name="password"
             value={userData.password}
