@@ -9,7 +9,7 @@ export default function Detail (props) {
    const API_KEY = "dcfc10d73e5d.2a52928cb7f6acd5e30a";
    const { detailId } = useParams();
    useEffect(() => {
-    fetch(`${URL_BASE}character/${detailId}${API_KEY}`)
+    fetch(`https://rickandmortyapi.com/api/character/${detailId}`)
       .then((response) => response.json())
       .then((char) => {
         if (char.name) {
