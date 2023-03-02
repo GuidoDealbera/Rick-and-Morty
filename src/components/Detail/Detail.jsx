@@ -1,15 +1,14 @@
-import style from "./Detail.module.css"
-import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import style from "./Detail.module.css";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-
-export default function Detail (props) {
-   const [character, setCharacter] = useState({});
-   const URL_BASE = "https://be-a-rym.up.railway.app/api";
-   const API_KEY = "dcfc10d73e5d.2a52928cb7f6acd5e30a";
-   const { detailId } = useParams();
-   useEffect(() => {
-    fetch(`https://rickandmortyapi.com/api/character/${detailId}`)
+export default function Detail(props) {
+  const [character, setCharacter] = useState({});
+  const URL_BASE = "https://be-a-rym.up.railway.app/api";
+  const API_KEY = "dcfc10d73e5d.2a52928cb7f6acd5e30a";
+  const { detailId } = useParams();
+  useEffect(() => {
+    fetch(`${URL_BASE}/character/${detailId}?key=${API_KEY}`)
       .then((response) => response.json())
       .then((char) => {
         if (char.name) {
@@ -23,17 +22,20 @@ export default function Detail (props) {
       });
     return setCharacter({});
   }, [detailId]);
-   
-   
-    return (
-        <div className={style.detail}>
-            <h1>DETALLES:</h1>
-            <div>NOMBRE: {character.name}</div>
-            <div>ESPECIE: {character.species}</div>
-            <img src={character.image} alt={character.name} />
-            <div>GÉNERO: {character.gender}</div>
-            <div>STATUS: {character.status}</div>
-            <div>ORIGEN: {character.origin?.name}</div>
-        </div>
-    )
+
+  return (
+    <div className={style.detail}>
+      <div>
+        <img src={character.image} alt={character.name} />
+      </div>
+      <div>
+        <h1>DETALLE:</h1>
+        <h2>NOMBRE: {character.name}</h2>
+        <h4>ESPECIE: {character.species}</h4>
+        <h4>GÉNERO: {character.gender}</h4>
+        <h4>STATUS: {character.status}</h4>
+        <h4>ORIGEN: {character.origin?.name}</h4>
+      </div>
+    </div>
+  );
 }

@@ -36,20 +36,25 @@ export default function Form (props){
         <div className={style.formulario}>
         <form onSubmit={handleSubmit}>
             <label>Username:</label>
+            <br />
             <input type="text"
             name="username"
             value={userData.username}
-            onChange={handleInputChange}/>
+            onChange={handleInputChange}
+            placeholder="Correo Electrónico:"/>
             {errors.username && <p>{errors.username}</p>}
             <br/>
             <label>Password:</label>
+            <br />
             <input type="password"
             name="password"
             value={userData.password}
-            onChange={handleInputChange}/>
+            onChange={handleInputChange}
+            placeholder="Contraseña:"/>
             {errors.password && <p>{errors.password}</p>}
-            <br/>
+            <div>
             <button>Sign in</button>
+            </div>
         </form>
         </div>
     )

@@ -1,3 +1,5 @@
 .detail {
-    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    color: red
 }
