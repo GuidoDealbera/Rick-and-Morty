@@ -1,5 +1,6 @@
 .detail {
     display: flex;
     justify-content: space-around;
-    color: red
+    color: red;
+    
 }

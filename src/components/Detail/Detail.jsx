@@ -25,10 +25,10 @@ export default function Detail(props) {
 
   return (
     <div className={style.detail}>
-      <div>
+      <div className={style.imagen}>
         <img src={character.image} alt={character.name} />
       </div>
-      <div>
+      <div className={style.info}>
         <h1>DETALLE:</h1>
         <h2>NOMBRE: {character.name}</h2>
         <h4>ESPECIE: {character.species}</h4>
