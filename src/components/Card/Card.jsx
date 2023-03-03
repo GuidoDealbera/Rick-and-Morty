@@ -27,4 +27,4 @@ export default function Card(props) {
    );
 }
 
-//PROBANDO
+//PROBANDO x2
