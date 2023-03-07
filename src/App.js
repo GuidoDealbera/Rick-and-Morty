@@ -6,6 +6,9 @@ import { Routes, Route, useLocation, useNavigate } from 'react-router-dom' //HIC
 import About from './components/About/About.jsx'
 import Detail from './components/Detail/Detail.jsx'
 import Form from './components/Form/Form'
+import Favorites from './components/Favorites/Favorites'
+
+
 function App () {
   const [characters, setCharacters] = useState([]);
   
@@ -59,6 +62,7 @@ function App () {
         onSearch={onSearch}/>}
       </div>
       <Routes>
+      <Route path='/favorites' element={<Favorites onClose={onClose} />} />
         <Route exact path="/" element={<Form login={login}/>}/>
         <Route path="/home" element={<Cards characters={characters} onClose={onClose}/>}/>
         <Route path="/about" element={<About/>}/>
