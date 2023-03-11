@@ -1,6 +1,6 @@
 import style from "./SearchBar.module.css"
 import React from "react";
-export default function SearchBar(props) {
+export default function SearchBar({onSearch}) {
    const [character, setCharacter] = React.useState("");
    
    const handleInput = (evento) => {
@@ -8,7 +8,7 @@ export default function SearchBar(props) {
    }
    const handleKeyPress = (event) => {
       if(event.key === 'Enter'){
-        props.onSearch(character)
+        onSearch(character)
         setCharacter('')
       }
     }
@@ -17,7 +17,7 @@ export default function SearchBar(props) {
          <input type='text' name='search' placeholder="ID" 
          onChange={(evento) => handleInput(evento)} value={character}
          onKeyDown={handleKeyPress}/>
-      <button onClick={()=>props.onSearch(character)}>Agregar</button>
+      <button onClick={()=>onSearch(character)}>Agregar</button>
       </div>
    );
 }
