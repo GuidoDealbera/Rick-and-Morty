@@ -7,6 +7,8 @@ import About from "./components/About/About.jsx";
 import Detail from "./components/Detail/Detail.jsx";
 import Form from "./components/Form/Form";
 import Favorites from "./components/Favorites/Favorites";
+import { deleteFavorite } from "./redux/actions";
+import { useDispatch } from "react-redux";
 
 function App() {
   const [characters, setCharacters] = useState([]);
@@ -45,10 +47,11 @@ function App() {
         }
       });
   }
-
+  const dispatch = useDispatch();
   const onClose = (id) => {
+    dispatch(deleteFavorite(id))
     setCharacters((data) => {
-      return data.filter((evento) => evento.id !== id);
+      return (data.filter((evento) => evento.id !== id));
     });
   };
   const location = useLocation();
