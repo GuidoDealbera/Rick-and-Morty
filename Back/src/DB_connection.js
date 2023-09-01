@@ -11,7 +11,7 @@ Recuerda pasarle la información de tu archivo '.env'.
 URL ----> postgres://DB_USER:DB_PASSWORD@DB_HOST/rickandmorty
 */
 const sequelize = new Sequelize(
-   `postgres://${DB_USER}:${DB_PASSWORD}@localhost:5432/rickandmorty`,
+   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/rickandmorty`,
    { logging: false, native: false }
 );
 

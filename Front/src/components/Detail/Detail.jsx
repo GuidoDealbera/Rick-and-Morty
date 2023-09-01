@@ -23,17 +23,16 @@ export default function Detail(props) {
   }, [detailId]);
 
   return (
-    <div className=''>
-      <div className=''>
-        <img src={character.image} alt={character.name} />
+    <div className='flex flex-col h-[90vh] sm:flex-row gap-12 p-10 justify-center items-center'>
+      <div className='min-w-6xl rounded-xl shadow-xl shadow-[#adff2f]'>
+        <img src={character.image} alt={character.name} className="rounded-xl"/>
       </div>
-      <div className=''>
-        <h1>DETALLE:</h1>
-        <h2>NOMBRE: {character.name}</h2>
-        <h4>ESPECIE: {character.species}</h4>
-        <h4>GÉNERO: {character.gender}</h4>
-        <h4>STATUS: {character.status}</h4>
-        <h4>ORIGEN: {character.origin?.name}</h4>
+      <div className='flex flex-col gap-4 border-b-2 border-r-2 sm:border-r-0 sm:border-l-2 border-[#adff2f] rounded-xl p-2'>
+        <h1 className="bg-[#adff2f] py-1 px-4 w-fit bg-opacity-80 rounded-full sm:text-2xl text-xl uppercase font-bold">{character.name}</h1>
+        <h4 className="flex items-center gap-2 bg-[#adff2f] pr-4 rounded-full"><span className="text-[#adff2f] bg-blue-900 py-1 px-4 rounded-full font-medium">SPECIE:</span> {character.species}</h4>
+        <h4 className="flex items-center gap-2 bg-[#adff2f] pr-4 rounded-full"><span className="text-[#adff2f] bg-blue-900 py-1 px-4 rounded-full font-medium">GENDER:</span> {character.gender}</h4>
+        <h4 className="flex items-center gap-2 bg-[#adff2f] pr-4 rounded-full"><span className="text-[#adff2f] bg-blue-900 py-1 px-4 rounded-full font-medium">STATUS:</span> {character.status}</h4>
+        <h4 className="flex items-center gap-2 bg-[#adff2f] pr-4 rounded-full"><span className="text-[#adff2f] bg-blue-900 py-1 px-4 rounded-full font-medium">ORIGIN:</span> {character.origin?.name}</h4>
       </div>
     </div>
   );

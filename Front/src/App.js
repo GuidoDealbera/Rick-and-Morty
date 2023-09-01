@@ -5,10 +5,7 @@ import { Routes, Route, useLocation, useNavigate } from "react-router-dom"; //HI
 import Detail from "./components/Detail/Detail.jsx";
 import Form from "./components/Form/Form";
 import Favorites from "./components/Favorites/Favorites";
-import axios from "axios";
-//import { deleteFavorite } from "./redux/actions";
-//import { useDispatch } from "react-redux";
-axios.defaults.baseURL = "http://localhost:3001/rickandmorty/"
+
 function App() {
   const [characters, setCharacters] = useState([]);
 
@@ -21,6 +18,8 @@ function App() {
     if (userData.password === password && userData.username === username) {
       setAccess(true);
       navigate("/home");
+    } else {
+      alert('Credenciales Incorrectas')
     }
   }
   useEffect(() => {
@@ -61,7 +60,7 @@ function App() {
           element={<Cards characters={characters} onClose={onClose} />}
         />
         <Route path="detail/:detailId" element={<Detail />} />
-        <Route path="/favorites" element={<Favorites/>}/>
+        <Route path="/favorites" element={<Favorites onClose={onClose}/>}/>
       </Routes>
     </div>
   );

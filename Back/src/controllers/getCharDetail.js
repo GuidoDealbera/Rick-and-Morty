@@ -10,6 +10,7 @@ async function getCharDetail(req, res) {
         species: response.data.species,
         image: response.data.image,
         gender: response.data.gender,
+        status: response.data.status,
         origin: response.data.origin,
       }
       res.status(200).json(character)

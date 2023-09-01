@@ -1,87 +1,96 @@
-import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { connect, useDispatch } from "react-redux";
 import { orderCards, filterCards } from "../../redux/actions";
-import { useEffect, useState } from "react";
-import { deleteFavorites } from "../../redux/actions";
+import { useEffect } from "react";
+import Card from "../Card/Card";
 
-const Favorites = () => {
-  const { myFavorites } = useSelector((state) => state);
-  const [isFav, setIsFav] = useState(true);
+const Favorites = (props) => {
+  const mapFavorites = () => {
+    return props.myFavorites?.map((e, i) => (
+      <Card
+        id={e.id}
+        key={i}
+        name={e.name}
+        species={e.species}
+        gender={e.gender}
+        image={e.image}
+        onClose={() => {
+          props.onClose(e.id);
+        }}
+      />
+    ));
+  };
+
   const dispatch = useDispatch();
-  const handleFavorite = (id) => {
-    if (isFav) {
-      setIsFav(false);
-      dispatch(deleteFavorites(id));
-    }
-  };
-  const handlerOrder = (evento) => {
-    dispatch(orderCards(evento.target.value));
-  };
-  const handlerFilter = (evento) => {
-    dispatch(filterCards(evento.target.value));
+  const selectOrderHandler = (event) => {
+    dispatch(filterCards("None"));
+    dispatch(orderCards(event.target.value));
   };
   useEffect(() => {
-    return (
-      dispatch(orderCards("Ascendente")),
-      () => {
-        dispatch(filterCards("none"));
-        dispatch(orderCards("Ascendente"));
-      }
-    );
+    return () => {
+      dispatch(filterCards("none"));
+      dispatch(orderCards("ascendente"));
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const selectFilterHandler = (event) => {
+    dispatch(filterCards(event.target.value));
+  };
   return (
-    <div className='py-2'>
-      <div>
-        <select onChange={handlerOrder}>
-          <option value="order" disabled="disable">
-            Order By
+    <div className="p-2">
+      <div className="flex gap-5">
+        <select
+          className="bg-[#adff2f] outline-none rounded-xl py-1 px-2"
+          onChange={selectOrderHandler}
+        >
+          <option
+            className="italic font-medium"
+            value="order"
+            disabled="disable"
+          >
+            Order By A-Z
           </option>
-          <option value="Ascendente">Ascendente</option>
-          <option value="Descendente">Descendente</option>
+          <option className="italic font-medium" value="ascendente">
+            Ascendente
+          </option>
+          <option className="italic font-medium" value="descendente">
+            Descendente
+          </option>
         </select>
-        <select onChange={handlerFilter}>
-          <option value="filter" disabled="disable">
-            Filter By
+        <select
+          className="bg-[#adff2f] outline-none rounded-xl py-1 px-2"
+          onChange={selectFilterHandler}
+        >
+          <option
+            className="italic font-medium"
+            value="filter"
+            disabled="disable"
+          >
+            Filter By Gender
           </option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Unknown">Unknown</option>
-          <option value="Genderless">Genderless</option>
+          <option className="italic font-medium" value="Male">
+            Male
+          </option>
+          <option className="italic font-medium" value="Female">
+            Female
+          </option>
+          <option className="italic font-medium" value="unknown">
+            Unknown
+          </option>
+          <option className="italic font-medium" value="Genderless">
+            Genderless
+          </option>
         </select>
       </div>
-      {myFavorites.map((char) => {
-        return (
-          <div key={char.id} className=''>
-            <div className=''>
-              {isFav ? (
-                <button onClick={() => handleFavorite(char.id)}>❤️</button>
-              ) : (
-                <button onClick={() => handleFavorite(char.id)}>🤍</button>
-              )}
-            </div>
-            <Link to={`/detail/${char.id}`}>
-              <div>
-                <img
-                  className=''
-                  src={char.image}
-                  alt={char.name}
-                />
-              </div>
-            </Link>
-            <div className=''>
-              <h2>{char.name}</h2>
-              <br />
-              <div className=''>
-                <h6>{char.species}</h6>
-                <h6>{char.gender}</h6>
-              </div>
-            </div>
-          </div>
-        );
-      })}
+      <div className="flex flex-wrap gap-10 justify-center pt-4">{mapFavorites()}</div>
     </div>
   );
 };
 
-export default Favorites;
+export function mapStateToProps(state) {
+  return {
+    myFavorites: state.myFavorites,
+  };
+}
+
+export default connect(mapStateToProps, null)(Favorites);

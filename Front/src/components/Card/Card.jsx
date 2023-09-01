@@ -1,56 +1,80 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { connect } from "react-redux";
 import { addFavorites, deleteFavorites } from "../../redux/actions";
 
-export default function Card(props) {
-  const dispatch = useDispatch();
-  const myFavorites = useSelector((state) => state.myFavorites);
-  const [isFav, setIsFav] = useState(false);
+function Card(props) {
+  const [isFav, setIsFav] = useState(false)
+
+  useEffect(() => {
+    props.myFavorites.forEach((fav) => {
+//      console.log(props);
+       if (fav.id === props.id) {
+          setIsFav(true);
+       }
+    });
+ // eslint-disable-next-line react-hooks/exhaustive-deps
+ }, [props.myFavorites]);
 
   const handleFavorite = () => {
     if (isFav) {
-      setIsFav(false);
-      dispatch(deleteFavorites(props.id));
-    } else {
-      setIsFav(true);
-      dispatch(addFavorites(props));
+      setIsFav(false)
+      props.deleteFavorites(props.id)
     }
-  };
-
-  useEffect(() => {
-    myFavorites.forEach((fav) => {
-      if (fav.id === props.id) {
-        setIsFav(true);
+    else {
+      const obj = {
+        id: props.id,
+        name: props.name,
+        species: props.species,
+        gender: props.gender,
+        image: props.image
       }
-    });
-  }, [myFavorites, props.id]);
+      setIsFav(true)
+      props.addFavorites(obj)
+    }
+  }
 
   return (
-    <div className="flex flex-col bg-lime-400 w-fit p-2 rounded-3xl">
-        <div className="w-48 rounded-3xl shadow-md shadow-black relative">
-        <img className="rounded-3xl" src={props.image} alt={props.name} />
-        <span className="absolute top-0  bg-black/80 w-full h-full rounded-3xl"></span>
-        </div>
-      <div className="flex justify-end text-xl">
+    <div className="flex flex-col bg-lime-400 w-52 h-fit p-2 rounded-3xl relative hover:scale-105 duration-500">
+      <div className="flex gap-2 justify-end items-center text-xl absolute right-3 top-3 drop-shadow-lg">
         {isFav ? (
-          <button onClick={handleFavorite}>❤️</button>
+          <button
+            onClick={handleFavorite}
+            className="hover:scale-125 duration-100"
+          >
+            ❤️
+          </button>
         ) : (
-          <button onClick={handleFavorite}>🤍</button>
+          <button
+            onClick={handleFavorite}
+            className="hover:scale-125 duration-100"
+          >
+            🤍
+          </button>
         )}
+        <button onClick={() => props.onClose()} className="bg-red-600 w-4 h-4 rounded-full"></button>
       </div>
-      <div className="flex flex-col gap-4">
-        <h2 className="text-center text-2xl">{props.name}</h2>
-        <div className="flex justify-around">
-          <h6>{props.species}</h6>
-          <h6>{props.gender}</h6>
-        </div>
-      </div>
-      <div className="flex justify-end">
+      <div className="w-48 rounded-3xl shadow-md shadow-black">
       <Link to={`/detail/${props.id}`}>
-    
+        <img className="rounded-3xl" src={props.image} alt={props.name} />
       </Link>
       </div>
+      <h2 className="text-center text-2xl py-2 font-semibold text-gray-900 shadowtext">{props.name}</h2>
     </div>
   );
 }
+
+export function mapStateToProps(state) {
+  return{
+    myFavorites: state.myFavorites
+  }
+}
+
+export function mapDispatchToProps(dispatch){
+  return {
+    addFavorites: (personaje) => {dispatch(addFavorites(personaje))},
+    deleteFavorites: (id) => {dispatch(deleteFavorites(id))}
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Card)
