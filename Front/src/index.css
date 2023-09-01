@@ -10,22 +10,21 @@ body {
 }
 
 .bg-img{
-  position:relative;
   background: url(../src/img/2348073.jpg);
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  box-shadow: 2px 15px 90px #adff2f;
-  
+  transform: scale(80%);
+  transition: transform .5s ease;
+}
+.bg-img:focus-within{
+  transform: scale(100%);
+  box-shadow: 0 15px 50px greenyellow;
 }
 
-.bg-img::after{
-  position: absolute;
-  content: "";
-  background-color: rgba(0, 0, 0);
-  width: 120%;
-  height: 120%;
-  z-index: -999;
-  border-radius: 99px;
-  box-shadow: 2px 15px 40px greenyellow;
+.portal{
+  background: url(../src/img/4-47559_rick-and-morty-portal-png-transparent-png-removebg-preview.png);
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
 }

@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { orderCards, filterCards } from "../../redux/actions";
 import { useEffect, useState } from "react";
-import { deleteFavorite } from "../../redux/actions";
+import { deleteFavorites } from "../../redux/actions";
 
 const Favorites = () => {
   const { myFavorites } = useSelector((state) => state);
@@ -11,7 +11,7 @@ const Favorites = () => {
   const handleFavorite = (id) => {
     if (isFav) {
       setIsFav(false);
-      dispatch(deleteFavorite(id));
+      dispatch(deleteFavorites(id));
     }
   };
   const handlerOrder = (evento) => {
@@ -31,7 +31,7 @@ const Favorites = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <div className=''>
+    <div className='py-2'>
       <div>
         <select onChange={handlerOrder}>
           <option value="order" disabled="disable">

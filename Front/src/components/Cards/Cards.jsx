@@ -3,7 +3,7 @@ import Card from '../Card/Card.jsx';
 export default function Cards(props) {
    const { characters } = props;
    return (
-   <div className=''>
+   <div className='py-4 flex flex-wrap gap-4'>
       {characters.map((elemento) => {
          return <Card 
          id={elemento.id}
